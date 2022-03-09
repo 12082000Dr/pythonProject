@@ -31,6 +31,12 @@ def TODO(a, b):
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, command)
+    key = telebot.types.InlineKeyboardMarkup(row_width=2)
+    key_1 = telebot.types.InlineKeyboardButton('Напечатать полную справку', callback_data='help_all')
+    key_2 = telebot.types.InlineKeyboardButton('Как добавить задачу?', callback_data='app_help')
+    key_3 = telebot.types.InlineKeyboardButton('Как посмотреть свои задачи?', callback_data='print_help')
+    key.add(key_1, key_2, key_3)
+    bot.send_message(message.chat.id, 'Добро пожаловать в универсального бота!\nВыберете дальгейшую справку для пользования ботом.', reply_markup=key)
 
 @bot.message_handler(commands=['help'])
 def help(message):
